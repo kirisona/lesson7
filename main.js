@@ -66,53 +66,24 @@ console.log(newArray);
 
 Условия:
 
-- сортировка может быть как по числу так и по строке, т.е поле по которому мы хотим сортировать может содержать как строку так и число.
+- сортировка может быть как по числу так и по строке, т.е поле по которому мы хотим сортировать может содержать как строку так и число.,
 - передаваемый массив не должен изменяться
 - нужно проверять что передан массив и поле по которому сортировать. */
 
-// function sortArray(array, key, order) {
-//   for (let i = 0; i < array.length; i++) {
-//     if (array[i].key > array[i + 1].key) {
-//       return order = 1;
-//     } else if (array[i].key < array[i + 1].key) {
-//       return order = -1;
-//     } else {
-//       return 0;
-//     }
-//   }
-// }
+function sortArray(array, key) {
+  let newSortArray = [...array];
 
-// users.sort(sortArray);
-
-// function sortAsc(a, b, key) {
-//   if (a.key > b.key) {
-//     return 1;
-//   } else if (a.key < b.key) {
-//     return -1;
-//   } else {
-//     return 0;
-//   }
-// }
-
-// function sortDesc(a, b, key) {
-//   return sortAsc(b, a, key);
-// }
-
-// function sortArray(array, index, key) {
-//   if (sortOrder > 0) {
-//     users.sort(function (a, b) { return sortDesc(a, b, key); });
-//     sortOrder = -1;
-//   } else {
-//     users.sort(function (a, b) { return sortAsc(a, b); });
-//     sortOrder = 1;
-//   }
-
-// }
-
-function sortArray(array, key, order) {
-  for (let i = 0; i < array.length; i++) {
-    array[i].sort();
-  }
+  newSortArray.sort(function(prev, next, compare) {
+    if (prev.index.key < next.index.key) return -1;
+    if (prev.index.key > next.index.key) return 1;
+  });
+  
 }
 
-console.log(sortArray(newArray, 'balance'))
+function compare(a, b) {
+  if (a > b) return 1;
+  if (a == b) return 0;
+  if (a < b) return -1;
+}
+
+console.log(sortArray(users, 'age'))
