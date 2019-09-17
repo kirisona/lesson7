@@ -70,20 +70,23 @@ console.log(newArray);
 - передаваемый массив не должен изменяться
 - нужно проверять что передан массив и поле по которому сортировать. */
 
-function sortArray(array, key) {
-  let newSortArray = [...array];
+function sortArray(array, key, order) {
 
-  newSortArray.sort(function(prev, next, compare) {
-    if (prev.index.key < next.index.key) return -1;
-    if (prev.index.key > next.index.key) return 1;
-  });
-  
+  if (order === 'asc') {
+    return array.sort(function(prev, next) { 
+      if (prev[key] < next[key]) return -1;
+      if (prev[key] > next[key]) return 1;
+      return 0;
+    });
+  } else if (order === 'desc') {
+    return array.sort(function(prev, next) { 
+      if (prev[key] > next[key]) return -1;
+      if (prev[key] < next[key]) return 1;
+      return 0;
+    });
+  }
+
+
 }
 
-function compare(a, b) {
-  if (a > b) return 1;
-  if (a == b) return 0;
-  if (a < b) return -1;
-}
-
-console.log(sortArray(users, 'age'))
+console.log(sortArray(users, 'nestedField.total', 'asc'));
